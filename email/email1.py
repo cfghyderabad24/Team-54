@@ -3,6 +3,7 @@ import webbrowser
 import urllib.parse
 import openpyxl
 import google.generativeai as genai
+import os
 
 class EmailSenderApp:
     def __init__(self, root):
@@ -35,7 +36,7 @@ class EmailSenderApp:
             max_fy = f"FY {2014 + max_index}-{2015 + max_index}"  # Example: FY 2014-15, FY 2015-16, etc.
 
             # Construct email subject and body
-            GOOGLE_API_KEY = ""
+            GOOGLE_API_KEY = os.environ.("API_KEY")
             genai.configure(api_key=GOOGLE_API_KEY)
             model = genai.GenerativeModel('gemini-pro')
             res = model.generate_content(f"Generate Mail content to {state} with expenditure {max_expenditure} spent indexing {max_index} for the year {max_fy}  it should be requesting donations for Jaldhaara Foundation,convincing for working towards drinking water improvement")
