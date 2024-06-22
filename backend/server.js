@@ -16,7 +16,6 @@ const port = process.env.PORT || 8000
 
 
 
-
 //connect to DB
 mongoClient.connect(process.env.MONGO_URI)
 .then(client=>{
