@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import axios from 'axios';
 
 // Mock data
 const companies = [
@@ -15,6 +16,23 @@ const companies = [
 export function CompaniesPage() {
   const [selectedDomains, setSelectedDomains] = useState([]);
   const [selectedRatios, setSelectedRatios] = useState([]);
+  const [companies, setCompanies] = useState([]);
+
+  try{
+    axios.get('http://localhost:3000/gencomapany/companies')
+    .then((response)=>{
+      setCompanies(response.data)
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+  catch(error){
+    console.log(error);
+  }
+
+
+
 
   const handleDomainChange = (domain) => {
     setSelectedDomains((prevSelectedDomains) =>
@@ -100,7 +118,7 @@ export function CompaniesPage() {
                 <thead>
                   <tr className="bg-muted">
                     <th className="px-4 py-3 text-left font-medium">Company Name</th>
-                    <th className="px-4 py-3 text-left font-medium">CSR Spent</th>
+                    <th className="px-4 py-3 text-left font-medium">CSR Spent $</th>
                     <th className="px-4 py-3 text-right font-medium">Geography</th>
                     <th className="px-4 py-3 text-right font-medium">Email</th>
                   </tr>
@@ -110,10 +128,10 @@ export function CompaniesPage() {
                     <tr key={index} className="border-b">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-4">
-                          <h3 className="text-lg font-semibold">{company.name}</h3>
+                          <h3 className="text-lg font-semibold">{company.companyname}</h3>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-muted-foreground">{company.csrSpent}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{company.csrspent}</td>
                       <td className="px-4 py-3 text-right font-semibold">{company.geography}</td>
                       <td className="px-4 py-3 text-right">
                         <Button

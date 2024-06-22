@@ -11,7 +11,7 @@ gencomapanyApp.use((req, res, next) => {
 });
 
 // Example route
-gencomapanyApp.get('/allusers', expressAsyncHandler(async (req, res) => {
+gencomapanyApp.get('/companies', expressAsyncHandler(async (req, res) => {
     const users = await companies.find({}).toArray();
     res.send(users);
 }));
