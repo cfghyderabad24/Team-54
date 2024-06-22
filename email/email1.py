@@ -38,7 +38,7 @@ class EmailSenderApp:
             GOOGLE_API_KEY = ""
             genai.configure(api_key=GOOGLE_API_KEY)
             model = genai.GenerativeModel('gemini-pro')
-            res = model.generate_content(f"Generate Mail content to {state} with expenditure {max_expenditure} spent indexing {max_index} for the year {max_fy}  it should be requesting donations for Jeldara Foundation,convincing for working towards drinking water improvement")
+            res = model.generate_content(f"Generate Mail content to {state} with expenditure {max_expenditure} spent indexing {max_index} for the year {max_fy}  it should be requesting donations for Jaldhaara Foundation,convincing for working towards drinking water improvement")
             generated = res.text.replace('.',' *')
             subject = f"Statewise Expenditure Update: {state}"
             body = generated
