@@ -13,10 +13,8 @@ function App() {
   return (
     <>
       
-      <Button>Click me</Button>
       <CompaniesPage></CompaniesPage>
-      <Dashboard></Dashboard>
-      <Component></Component>
+  
 
     </>
   )
