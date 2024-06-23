@@ -16,7 +16,6 @@ userApp.use((req, res, next) => {
 userApp.post('/login', expressAsyncHandler(async (req, res) => {
     //get cred obj from client
     const userCred = req.body;
-    console.log(userCred);
     //check for username
     const dbuser = await userscollection.findOne({ name: userCred.username });
     if (dbuser === null) {

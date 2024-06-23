@@ -4,6 +4,9 @@ import Login from './components/Login/Login';
 import MainPage from './components/MainPage.js/MainPage';
 import RootLayout from './RootLayout/RootLayout';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import DonationPage from './components/DonationPage/DonationPage';
+import Receipts from './components/DonationPage/Receipts';
+
 
 function App() {
 
@@ -24,6 +27,14 @@ function App() {
         {
           path:"/mainpage",
           element:<MainPage/>
+        },
+        {
+          path:"/donationpage",
+          element:<DonationPage/>
+        },
+        {
+          path:"/receipts",
+          element:<Receipts/>
         }
       ]
     }
