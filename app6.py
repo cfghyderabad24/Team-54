@@ -60,7 +60,6 @@ def get_conversational_chain():
     {context}\n
     Question: \nWhat is the document about?\n
     Answer: A brief overall summary of the company's efforts in Water, Sanitation, and Hygiene, including key numbers and achievements that are related to WASH.
-    
     """
 
     model = ChatGoogleGenerativeAI(model="gemini-1.5-pro", temperature=0.3)
@@ -96,7 +95,8 @@ def process_pdf_async(pdf_file):
     try:
         pdf_name = process_pdf(pdf_file)
         answer = user_input(pdf_file)
-        pdf_responses[pdf_name] = {"response": answer}
+        response_with_company = {"company_name": pdf_name, "response": answer}
+        pdf_responses[pdf_name] = response_with_company
     except Exception as e:
         pdf_responses[pdf_file] = {"error": str(e)}
 
