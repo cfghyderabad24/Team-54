@@ -56,7 +56,12 @@ function MainPage() {
   }, []);
 
   const handleSort = (domain) => {
-    setSelectedDomain(domain);
+    if(selectedDomain === domain) {
+      setSelectedDomain('');
+    }
+    else{
+      setSelectedDomain(domain);
+    }
   };
 
   const filteredCompanies = selectedDomain
@@ -80,7 +85,7 @@ function MainPage() {
             <div className="w-full max-w-4xl">
               <div className="mb-4 text-center">
                 <button
-                  className={`btn m-2 ${selectedDomain === 'Water' ? 'btn-light' : 'btn-outline-dark'}`}
+                  className={`btn m-2 ${selectedDomain === 'Water' ? 'btn-dark' : 'btn-outline-dark'}`}
                   onClick={() => handleSort('Water')}
                 >
                   Water
