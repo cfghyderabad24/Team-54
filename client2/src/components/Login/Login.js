@@ -6,6 +6,7 @@ import { CounterContext } from '../../context/CounterContext';
 import pic from '../pics/profile-icon-png-910.jpg';
 import {jwtDecode} from 'jwt-decode';  // Correct import
 import './Login.css';
+import backgroundpic from '../images/backgroundimage.jpg';
 
 function Login() {
   let { register, handleSubmit, formState: { errors } } = useForm();
@@ -31,9 +32,20 @@ function Login() {
   }
 
   return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundImage: `url(${backgroundpic})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center calc(50% + 200px)', // Align the background image to the bottom
+      backgroundRepeat: 'no-repeat'
+    }}>
     <div>
 
-      <div className='flex mt-5 justify-center'>
+      <div className='flex  justify-center'>
       <img  className="w-[200px]" src="http://jaldhaara.org/wp-content/uploads/2022/04/jaldhaara-logo.png"  alt="Logo" />
       <p className='text-center text-3xl ms-3' >Donor Portal</p>
       </div>
@@ -60,6 +72,7 @@ function Login() {
           </form>
         </div>
       </div>
+    </div>
     </div>
     </div>
   );

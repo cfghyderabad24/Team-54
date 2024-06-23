@@ -12,7 +12,7 @@ CORS(app)
 
 
 # Path to your Excel file
-EXCEL_FILE_PATH = r'/Users/sakethreddy/harshi/github/Team-54/email/StateWiseReport.xlsx'  # Update with your file path
+EXCEL_FILE_PATH = r'C:\Users\rebba\.vscode\baisc\final\Team-54\email\StateWiseReport.xlsx'  # Update with your file path
 
 # Load data from Excel file
 wb = openpyxl.load_workbook(EXCEL_FILE_PATH)

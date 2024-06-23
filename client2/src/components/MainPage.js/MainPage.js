@@ -35,12 +35,13 @@ import { CounterContext } from '../../context/CounterContext';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css'
 import EmailButton from '../Email';
+import backgroundpic from '../images/backgroundimage.jpg';
 
 function MainPage() {
   const [selectedDomain, setSelectedDomain] = useState('');
   const [companies, setCompanies] = useState([]);
 
-  const { user } = useContext(CounterContext);
+  const { user, setUser } = useContext(CounterContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,6 +57,14 @@ function MainPage() {
     fetchCompanies();
   }, []);
 
+  
+  function logout(){
+    setUser(null)
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate("/")
+  }
+
   const handleSort = (domain) => {
     if(selectedDomain === domain) {
       setSelectedDomain('');
@@ -70,12 +79,24 @@ function MainPage() {
     : companies;
 
   return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundImage: `url(${backgroundpic})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center calc(50% + 150px)', // Align the background image to the bottom
+      backgroundRepeat: 'no-repeat'
+    }}>
     <div>
       {
         user ? (
           <div>
-            <nav className=' pt-5'>
-            <img  className="w-[200px] mx-auto" src="http://jaldhaara.org/wp-content/uploads/2022/04/jaldhaara-logo.png"  alt="Logo" />
+            <nav className=' pt-5 flex justify-between '>
+            <img  className="w-[200px] mx-auto " src="http://jaldhaara.org/wp-content/uploads/2022/04/jaldhaara-logo.png"  alt="Logo" />
+            <button className='btn text-light position-absolute right-2' onClick={logout} style={{backgroundColor:"#FC6D3F"}}>Logout</button>
             </nav>
           <div className="main min-h-screen flex flex-col items-center justify-center p-4">
 
@@ -126,9 +147,9 @@ function MainPage() {
                         <td className="py-2 px-4 border-b">{company.companyname}</td>
                         <td className="py-2 px-4 border-b">${company.csrspent}</td>
                         <td className="py-2 px-4 border-b">{company.geography}</td>
-                        <td className="py-2 px-4 border-b text-center">
-                        <EmailButton></EmailButton>
-                            {/* <i className="fas fa-envelope"></i> */}
+                        <td className="px-4 border-b  text-center">
+                        <EmailButton  ></EmailButton>
+                            <i className="fas fa-envelope"></i>
                           
                         </td>
                       </tr>
@@ -149,6 +170,7 @@ function MainPage() {
           </div>
         )
       }
+    </div>
     </div>
   );
 }

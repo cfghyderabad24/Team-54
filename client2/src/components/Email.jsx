@@ -22,7 +22,7 @@ const EmailButton = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Send Next Email</button>
+      <button onClick={handleClick}></button>
     </div>
   );
 };
