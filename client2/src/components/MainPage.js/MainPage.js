@@ -34,15 +34,31 @@ import axios from 'axios';
 import { CounterContext } from '../../context/CounterContext';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css'
-import EmailButton from '../Email';
 import backgroundpic from '../images/backgroundimage.jpg';
 
 function MainPage() {
   const [selectedDomain, setSelectedDomain] = useState('');
   const [companies, setCompanies] = useState([]);
+  const [mailtoLink, setMailtoLink] = useState(null);
+
 
   const { user, setUser } = useContext(CounterContext);
   const navigate = useNavigate();
+  const handleClick = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/generate_mailto_link');
+      if (response.ok) {
+        const data = await response.json();
+        setMailtoLink(data.mailto_link);
+        window.open(data.mailto_link, '_blank');
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while generating the email link.');
+    }
+  };
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -55,6 +71,7 @@ function MainPage() {
       }
     }
     fetchCompanies();
+    
   }, []);
 
   
@@ -148,7 +165,7 @@ function MainPage() {
                         <td className="py-2 px-4 border-b">${company.csrspent}</td>
                         <td className="py-2 px-4 border-b">{company.geography}</td>
                         <td className="px-4 border-b  text-center">
-                        <EmailButton  ></EmailButton>
+                        <button onClick={handleClick}>Email</button>
                             <i className="fas fa-envelope"></i>
                           
                         </td>

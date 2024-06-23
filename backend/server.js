@@ -8,6 +8,7 @@ app.use(cors());
 
 const gencomapany = require('./API/gencompany');
 const userapi = require('./API/userapi');
+const descapi = require('./API/adddesc');
 
 app.use(express.json());
 const port = process.env.PORT || 8000;
@@ -18,6 +19,8 @@ mongoClient.connect("mongodb://localhost:27017/")
         const targetcompanies = client.db('targetcompanies');
         const companies = targetcompanies.collection('companies');
         const userscollection = targetcompanies.collection('userscollection');
+        const descriptions = targetcompanies.collection('descriptions');
+        app.set('descriptions',descriptions);
         app.set('companies', companies);
         app.set('userscollection', userscollection);  // Ensure correct collection name
         console.log("DB connection success");
@@ -27,7 +30,7 @@ mongoClient.connect("mongodb://localhost:27017/")
 // Use the gencomapany router
 app.use("/gencompany", gencomapany);
 app.use("/userapi", userapi);
-
+app.use("/desc", descapi);
 // Express error handler
 app.use((err, req, res, next) => {
     res.send({ message: "error", payload: err.message });

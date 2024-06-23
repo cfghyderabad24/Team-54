@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import './Receipts.css'; 
+import EmailButton from './Email';
 
 const Receipts = () => {
   const invoiceRef = useRef();
@@ -49,7 +50,9 @@ const Receipts = () => {
         </div>
       </div>
       <button className='btn me-3' style={{backgroundColor:"#FC6D3F"}} onClick={handleGeneratePdf}>Generate PDF</button>
+      <EmailButton/>
       <button className='btn' style={{backgroundColor:"#FC6D3F"}} onClick={handleSendEmail}>Send Email</button>
+
     </div>
   );
 };
