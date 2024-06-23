@@ -34,6 +34,7 @@ import axios from 'axios';
 import { CounterContext } from '../../context/CounterContext';
 import { useNavigate } from 'react-router-dom';
 import './MainPage.css'
+import EmailButton from '../Email';
 
 function MainPage() {
   const [selectedDomain, setSelectedDomain] = useState('');
@@ -121,15 +122,16 @@ function MainPage() {
                         <td className="py-2 px-4 border-b">${company.csrspent}</td>
                         <td className="py-2 px-4 border-b">{company.geography}</td>
                         <td className="py-2 px-4 border-b text-center">
-                          <a href={`mailto:${company.email}`} className="text-white hover:underline">
-                            <i className="fas fa-envelope"></i>
-                          </a>
+                        <EmailButton></EmailButton>
+                            {/* <i className="fas fa-envelope"></i> */}
+                          
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+              
             </div>
           </div> 
           </div>
