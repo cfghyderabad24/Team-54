@@ -6,12 +6,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import axios from 'axios';
 
 // Mock data
-const companies = [
-  { name: 'Company-1', csrSpent: 'Amount 1', geography: '$29.99', domains: ['Water'], ratio: 'less than 0.3', email: 'email1@example.com' },
-  { name: 'Company-2', csrSpent: 'Amount 2', geography: '$49.99', domains: ['Sanitation'], ratio: '0.3 to 0.5', email: 'email2@example.com' },
-  { name: 'Company-3', csrSpent: 'Amount 3', geography: '$79.99', domains: ['Hygiene'], ratio: '0.5 to 0.75', email: 'email3@example.com' },
-  { name: 'Company-4', csrSpent: 'Amount 4', geography: '$59.99', domains: ['Water', 'Sanitation'], ratio: 'above 0.75', email: 'email4@example.com' },
-];
+// const companies = [
+//   { name: 'Company-1', csrSpent: 'Amount 1', geography: '$29.99', domains: ['Water'], ratio: 'less than 0.3', email: 'email1@example.com' },
+//   { name: 'Company-2', csrSpent: 'Amount 2', geography: '$49.99', domains: ['Sanitation'], ratio: '0.3 to 0.5', email: 'email2@example.com' },
+//   { name: 'Company-3', csrSpent: 'Amount 3', geography: '$79.99', domains: ['Hygiene'], ratio: '0.5 to 0.75', email: 'email3@example.com' },
+//   { name: 'Company-4', csrSpent: 'Amount 4', geography: '$59.99', domains: ['Water', 'Sanitation'], ratio: 'above 0.75', email: 'email4@example.com' },
+// ];
 
 export function CompaniesPage() {
   const [selectedDomains, setSelectedDomains] = useState([]);
@@ -57,7 +57,8 @@ export function CompaniesPage() {
   });
 
   return (
-    <div className="flex flex-col  min-h-[100dvh]">
+
+    <div className="flex flex-col  min-h-screen">
       <header className="flex h-16 items-center justify-between px-4 md:px-6 border-b">
         <div className="flex items-center gap-2 md:hidden">
           <Button variant="ghost" size="icon">

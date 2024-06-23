@@ -16,4 +16,10 @@ gencomapanyApp.get('/companies', expressAsyncHandler(async (req, res) => {
     res.send(users);
 }));
 
+gencomapanyApp.post('/companies', expressAsyncHandler(async (req, res) => {
+    const company = req.body;
+    await companies.insertOne(company);
+    res.send({message:"data inserted"});
+}));
+
 module.exports = gencomapanyApp;
