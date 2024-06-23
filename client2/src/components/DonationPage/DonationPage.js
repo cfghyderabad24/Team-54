@@ -33,29 +33,58 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { CounterContext } from '../../context/CounterContext';
 import { useNavigate } from 'react-router-dom';
-import './MainPage.css'
-import EmailButton from '../Email';
 import backgroundpic from '../images/backgroundimage.jpg';
 
-function MainPage() {
+function DonationPage() {
   const [selectedDomain, setSelectedDomain] = useState('');
-  const [companies, setCompanies] = useState([]);
+  
 
   const { user, setUser } = useContext(CounterContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchCompanies() {
-      try {
-        const response = await axios.get('http://localhost:3000/gencompany/companies');
-        console.log(response.data);
-        setCompanies(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const companies  = [
+    {
+      "companyName": "Tech Innovators Inc.",
+      "donations": 50000
+    },
+    {
+      "companyName": "Green Energy Solutions",
+      "donations": 75000
+    },
+    {
+      "companyName": "Healthcare Heroes Ltd.",
+      "donations": 120000
+    },
+    {
+      "companyName": "Future Finance Corp.",
+      "donations": 30000
+    },
+    {
+      "companyName": "Education Excellence",
+      "donations": 45000
+    },
+    {
+      "companyName": "Food For All",
+      "donations": 80000
+    },
+    {
+      "companyName": "Clean Water Initiative",
+      "donations": 95000
+    },
+    {
+      "companyName": "Tech For Good",
+      "donations": 62000
+    },
+    {
+      "companyName": "Global Health Org",
+      "donations": 110000
+    },
+    {
+      "companyName": "Future Builders",
+      "donations": 54000
     }
-    fetchCompanies();
-  }, []);
+  ]
+  
 
   
   function logout(){
@@ -103,54 +132,25 @@ function MainPage() {
             {/* Logo at the top left */}
             
       
-            <h1 className="text-center mb-4 text-2xl font-bold mt-2" style={{ color: '#fb5019' }}>DONOR LEADS</h1>
+            <h1 className="text-center mb-4 text-2xl font-bold mt-2" style={{ color: '#fb5019' }}>Donations Received</h1>
             <div className="w-full max-w-4xl">
-              <div className="mb-4 text-center">
-                <button
-                  className={`btn m-2 ${selectedDomain === 'Water' ? 'btn-dark' : 'btn-outline-dark'}`}
-                  onClick={() => handleSort('Water')}
-                >
-                  Water
-                </button>
-                <button
-                  className={`btn m-2 ${selectedDomain === 'Sanitation' ? 'btn-warning' : 'btn-outline-warning'}`}
-                  onClick={() => handleSort('Sanitation')}
-                >
-                  Sanitation
-                </button>
-                <button
-                  className={`btn m-2 ${selectedDomain === 'Hygiene' ? 'btn-success' : 'btn-outline-success'}`}
-                  onClick={() => handleSort('Hygiene')}
-                >
-                  Hygiene
-                </button>
-                <button
-                  className={`btn m-2 ${selectedDomain === '' ? 'btn-danger' : 'btn-outline-danger'}`}
-                  onClick={() => handleSort('')}
-                >
-                  All
-                </button>
-              </div>
-              <div className=" mb-8 ">
-                <table className="min-w-full border border-gray-300 rounded-4 shadow-lg m-auto">
+              
+              <div className="overflow-x-auto mb-8 rounded-4">
+                <table className="min-w-full border border-gray-300 rounded-lg shadow-lg m-auto">
                   <thead className=''>
                     <tr className="bg-dark text-white border-b rounded-t-lg">
                       <th className="py-2 px-4 text-left font-semibold">Company Name</th>
-                      <th className="py-2 px-4 text-left font-semibold">CSR Spent in Dollars</th>
-                      <th className="py-2 px-4 text-left font-semibold">Description</th>
-                      <th className="py-2 px-4 text-left font-semibold">Email</th>
+                      <th className="py-2 px-4 text-left font-semibold">CSR Spent in Rs</th>
+                      <th className="py-2 px-4 text-left font-semibold">Receipt</th>
                     </tr>
                   </thead>
                   <tbody  >
                     {filteredCompanies.map((company, index) => (
                       <tr key={index} className="custom-row">
-                        <td className="py-2 px-4 border-b">{company.companyname}</td>
-                        <td className="py-2 px-4 border-b">${company.csrspent}</td>
-                        <td className="py-2 px-4 border-b">{company.geography}</td>
+                        <td className="py-2 px-4 border-b">{company.companyName}</td>
+                        <td className="py-2 px-4 border-b">{company.donations}</td>
                         <td className="px-4 border-b  text-center">
-                        <EmailButton  ></EmailButton>
-                            <i className="fas fa-envelope"></i>
-                          
+                            <button className='btn text-white mt-1 mb-1' onClick={()=>navigate('/receipts')} style={{backgroundColor:"#FC6D3F"}}>Receipt</button>                          
                         </td>
                       </tr>
                     ))}
@@ -175,4 +175,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default DonationPage;
