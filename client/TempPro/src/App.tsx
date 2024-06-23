@@ -1,23 +1,16 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import { Button } from "@/components/ui/button"
-import Component from './components/Blog'
-import { Dashboard } from './components/dashboard'
-import './App.css'
-import { CompaniesPage } from './components/companies-page'
+// src/App.js
+import React from 'react';
+import EmailButton from './components/Email';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
-    <>
-      
-      <CompaniesPage></CompaniesPage>
-  
-
-    </>
-  )
+    <div className="App">
+      <header className="App-header">
+        <h1>Statewise Expenditure Email Sender</h1>
+        <EmailButton />
+      </header>
+    </div>
+  );
 }
 
-export default App
+export default App;
